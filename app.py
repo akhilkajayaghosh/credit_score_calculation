@@ -42,7 +42,7 @@ def submit():
         return render_template('page2.html', value=credit_score)
 # Define other routes and backend logic as needed
 
-@app.route('/predict', methods=['GET','POST'])
+@app.route('/predict', methods=['POST'])
 def predict():
     if request.method=="POST":
         dependents =request.form.get('dependents')
@@ -53,21 +53,17 @@ def predict():
         duration =request.form.get('duration')
         score =request.form.get('score')
         assets =request.form.get('asset')
-        # with open('datasets/data.csv', mode='a', newline='\n') as file:
-        #     writer = csv.writer(file)
-        #     writer.writerow([gender, age,income,stability,job,RLocation,amount,expense,ex1,ex2,dependents,score,defaults,Active_Credit,page,PType,PLocation,Co_Applicant,pprice])
         pred_data = pd.DataFrame([[dependents,education,job,income,amount,duration,score,assets]],
                                  columns=['no_of_dependents', 'education', 'self_employed', 'income_annum',
                                           'loan_amount', 'loan_term', 'cibil_score', 'Assets'])
         pred_data = scaler.transform(pred_data)
         prediction = model.predict(pred_data)
-
         if prediction[0] == 1:
             loan= 'Loan Is Approved'
         else:
             loan ='Loan Is Rejected'
         print(loan)
-    return render_template('page4.html',loan=loan)
+    return render_template('page4.html',answer=loan)
 # Define other routes and backend logic as needed
 
 if __name__ == '__main__':

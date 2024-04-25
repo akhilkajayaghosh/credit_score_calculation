@@ -9,7 +9,6 @@
 </head>
 
 <body>
-    <h1 class="Loan predicted:">{{value}}</h1>
     <div class="container">
         <div class="main">
             <nav>
@@ -20,7 +19,7 @@
             </nav>
         </div>
         <div class="content">
-            <h1>CREDIT SCORE CALCULATION</h1>
+            <h1>LOAN PREDICTION</h1>
             <div class="content-box">
                 <div class="form">
                     <form action="{{ url_for('predict') }}" method="post" class="form" id="prForm">
@@ -65,15 +64,6 @@
                                 <label for="assets" class="radio">Total Assets:</label>
                                 <input type="number" class="input" placeholder="Enter your total assets" id="assets" name="asset">
                             </div>
-                            <!-- <div class="slider-container">
-                                <p id="question">How satisfied are you with our service?</p>
-                                <p>Value: <span id="sliderValue">50</span></p>
-                                <input type="range" min="0" max="100" value="50" class="slider" id="mySlider">
-                                <div class="slider-values">
-                                    <span>0</span>
-                                    <span>100</span>
-                                </div>
-                            </div> -->
                         </div>
                         
                     </form>
@@ -93,18 +83,10 @@
         </div>
         <div class="footer">
             <div class="text">
-                <h1>YOUR SCORE</h1>
-                <h1 class="score">{{value}}</h1>
+                <h1>{{answer}}</h1>
             </div>
         </div>
     </div>
-    <script>
-        // script.js
-document.getElementById('mySlider').oninput = function() {
-  document.getElementById('sliderValue').textContent = this.value;
-}
-
-    </script>
 </body>
 
 </html>
